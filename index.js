@@ -11,9 +11,13 @@ const importObject = { wasi_snapshot_preview1: wasi.wasiImport };
     await WebAssembly.instantiate(wasm, importObject).then((instance) => {
 
         wasi.start(instance);
-        const { add } = instance.exports;
+        const { add, fibonacci } = instance.exports;
         const addValues = add(420, 69);
-        console.log({ addValues })
+        console.log({ addValues });
+        console.log("Fibonacci")
+        for (let i = 0; i < 10; i++) {
+            console.log(fibonacci(i));
+        }
     });
 
 })();
